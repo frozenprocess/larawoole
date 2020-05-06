@@ -1,0 +1,33 @@
+version: "3.7"
+services: 
+  php:
+    build:
+      context: ./docker/php
+    container_name: php
+    volumes: 
+      - ./:/app
+    ports:
+      - "80:80"
+      - "8081:8081"
+    environment:
+      - APP_NAME=${APP_NAME}
+      - APP_RUN=${APP_RUN}
+      - APP_VER=${APP_VER}
+      - APP_HOST=${APP_HOST}
+      - APP_PORT=${APP_PORT}
+  mariadb:
+    build:
+      context: ./docker/mariadb
+    container_name: db
+    volumes: 
+      - ./docker/mariadb/data:/var/lib/mysql
+    ports: 
+    - "3306:3306"
+  redis:
+    build: 
+      context: ./docker/redis
+    container_name: redis
+    volumes: 
+      - ./docker/redis/data:/var/lib/redis
+    ports:
+    - "6379:6379"
