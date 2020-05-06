@@ -11,10 +11,9 @@ if [[ ! -d $APP_PATH ]]; then
     echo 'LARAVELS_LISTEN_PORT=${APP_PORT}' >> .env && \
 
     php artisan laravels publish 
-
+else
+    cd $APP_NAME
 fi
-
-cd $APP_NAME
 
 if [[ $APP_RUN -eq "swoole" ]]; then
     php bin/laravels start

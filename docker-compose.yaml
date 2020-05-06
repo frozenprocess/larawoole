@@ -28,6 +28,6 @@ services:
       context: ./docker/redis
     container_name: redis
     volumes: 
-      - ./docker/redis/data:/var/lib/redis
+      - ./docker/redis/data:/data
     ports:
     - "6379:6379"
