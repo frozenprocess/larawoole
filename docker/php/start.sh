@@ -16,7 +16,11 @@ else
 fi
 
 if [[ $APP_RUN -eq "swoole" ]]; then
-    php bin/laravels start
+    if [[ $(ps aux | grep 'laravels\: master' | wc -l) -eq 1 ]]; then
+        php bin/laravels reload
+    else
+        php bin/laravels start
+    fi
 else
     php artisan serve --port=$APP_PORT --host=$APP_HOST
 fi
